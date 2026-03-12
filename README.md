@@ -7,7 +7,7 @@ A command-line tool for exporting and managing draw.io (`.drawio`) diagrams. It 
 You can install this tool globally directly from the GitHub repository. By fetching the pre-built `dist/` directory, the installation is fast and does not require compiling the draw.io source locally.
 
 ```bash
-npm install -g github:geekudo/drawio-cli
+npm install -g github:shun/drawio-cli
 ```
 
 Once installed, you can use the command anywhere:
@@ -21,7 +21,7 @@ drawio-cli export hoge.drawio -o hoge.svg
 If you prefer not to install it globally, you can execute it instantly using `npx`:
 
 ```bash
-npx github:geekudo/drawio-cli export hoge.drawio -o hoge.svg
+npx github:shun/drawio-cli export hoge.drawio -o hoge.svg
 ```
 
 ## Setup for Development
@@ -47,3 +47,4 @@ This will:
 3. Extract and compress only the essential rendering objects into the `dist/drawio` directory.
 
 After verifying the update (run `npm test`), you should commit the updated `dist/` directory.
+\n## Uninstallation\n\nIf you installed the CLI globally via `npm install -g`, you can remove it with:\n\n```bash\nnpm uninstall -g drawio-cli.gemini\n```\n\nIf you only used `npx github:shun/drawio-cli`, there is no global installation to remove. `npx` temporarily downloads and caches the package. If you wish to clear the `npx` cache to force a fresh download next time, you can clear the npm cache:\n\n```bash\nnpm cache clean --force\n```\n\n*Note: Clearing the npm cache will affect all cached npm packages, not just this CLI.*\n
