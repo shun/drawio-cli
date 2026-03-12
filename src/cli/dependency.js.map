@@ -1,0 +1,1 @@
+{"version":3,"file":"dependency.js","sourceRoot":"","sources":["dependency.ts"],"names":[],"mappings":";;;;;AAGA,sDAGC;AAND,4CAAoB;AACpB,gDAAwB;AAExB,SAAgB,qBAAqB,CAAC,WAAmB;IACvD,MAAM,UAAU,GAAG,cAAI,CAAC,IAAI,CAAC,WAAW,EAAE,KAAK,EAAE,QAAQ,EAAE,KAAK,EAAE,MAAM,EAAE,QAAQ,CAAC,CAAC;IACpF,OAAO,YAAE,CAAC,UAAU,CAAC,UAAU,CAAC,CAAC;AACnC,CAAC"}
