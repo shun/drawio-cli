@@ -1,5 +1,5 @@
 {
-  "name": "drawio-cli.gemini",
+  "name": "drawio-cli",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
