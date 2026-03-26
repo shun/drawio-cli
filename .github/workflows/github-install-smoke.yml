@@ -1,0 +1,35 @@
+name: GitHub Install Smoke
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify packaged contents
+        run: |
+          npm pack --ignore-scripts --dry-run > /tmp/npm-pack.txt 2>&1
+          grep 'dist/index.js' /tmp/npm-pack.txt
+
+      - name: Install via GitHub reference
+        run: |
+          prefix="$(mktemp -d)"
+          npm install -g --prefix "$prefix" github:${{ github.repository }}#${{ github.sha }}
+          echo "$prefix/bin" >> "$GITHUB_PATH"
+
+      - name: Smoke test CLI
+        run: |
+          command -v drawio-cli
+          drawio-cli --help
