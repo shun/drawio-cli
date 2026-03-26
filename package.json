@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest run",
-    "prepare": "npm run build",
     "build": "tsc && node scripts/copy-drawio.js",
     "update-drawio": "rm -rf tmp/drawio && git clone --depth 1 https://github.com/jgraph/drawio.git tmp/drawio && npm run build"
   },
