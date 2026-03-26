@@ -551,7 +551,9 @@ var mxEvent =
 	isMouseEvent: function(evt)
 	{
 		// Workaround for mixed event types during one gesture in Chrome on Linux
-		if (!mxClient.IS_ANDROID && mxClient.IS_LINUX && mxClient.IS_GC)
+		// but not on touch-capable devices (eg Android tablets in desktop UA mode)
+		if (!mxClient.IS_ANDROID && mxClient.IS_LINUX && mxClient.IS_GC &&
+			navigator.maxTouchPoints <= 1)
 		{
 			return true;
 		}
@@ -803,7 +805,14 @@ var mxEvent =
 	 * Default is -2.
 	 */
 	ROTATION_HANDLE: -2,
-	
+
+	/**
+	 * Variable: CONNECT_HANDLE
+	 *
+	 * Index for the connect handle in an mxMouseEvent. Default is -3.
+	 */
+	CONNECT_HANDLE: -3,
+
 	/**
 	 * Variable: CUSTOM_HANDLE
 	 * 
@@ -1513,6 +1522,13 @@ var mxEvent =
 	 * Specifies the event name for start.
 	 */
 	START: 'start',
+
+	/**
+	 * Variable: UPDATE
+	 *
+	 * Specifies the event name for update.
+	 */
+	UPDATE: 'update',
 
 	/**
 	 * Variable: RESET

@@ -1073,28 +1073,12 @@ var mxUtils =
 	 */
 	getXml: function(node, linefeed)
 	{
-		var xml = '';
-		
-		if (mxClient.IS_IE || mxClient.IS_IE11)
-		{
-			xml = mxUtils.getPrettyXml(node, '', '', '');
-		}
-		else if (window.XMLSerializer != null)
-		{
-			var xmlSerializer = new XMLSerializer();
-			xml = xmlSerializer.serializeToString(node);
-		}
-		else if (node.xml != null)
-		{
-			xml = node.xml.replace(/\r\n\t[\t]*/g, '').
-				replace(/>\r\n/g, '>').
-				replace(/\r\n/g, '\n');
-		}
+		var xml = new XMLSerializer().serializeToString(node);
 
 		// Replaces linefeeds with HTML Entities.
 		linefeed = linefeed || '&#xa;';
 		xml = xml.replace(/\n/g, linefeed);
-		  
+
 		return xml;
 	},
 	

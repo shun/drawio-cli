@@ -1311,6 +1311,7 @@ mxCellRenderer.prototype.redrawCellOverlays = function(state, forced)
 			{
 				shape.bounds = bounds;
 				shape.scale = state.view.scale;
+				shape.viewTranslate = state.view.translate;
 				shape.redraw();
 			}
 		});
@@ -1629,7 +1630,8 @@ mxCellRenderer.prototype.redrawShape = function(state, force, rendering)
 			}
 
 			state.shape.scale = state.view.scale;
-			
+			state.shape.viewTranslate = state.view.translate;
+
 			if (rendering == null || rendering)
 			{
 				this.doRedrawShape(state);

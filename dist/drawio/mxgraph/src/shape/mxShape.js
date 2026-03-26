@@ -639,6 +639,7 @@ mxShape.prototype.createSvgCanvas = function()
 	var canvas = new mxSvgCanvas2D(this.node, false);
 	canvas.strokeTolerance = this.svgStrokeTolerance;
 	canvas.pointerEventsValue = this.svgPointerEvents;
+	canvas.viewTranslate = this.viewTranslate;
 	var off = this.getSvgScreenOffset();
 
 	if (off != 0)
@@ -1392,7 +1393,7 @@ mxShape.prototype.apply = function(state)
 		this.gradientDirection = mxUtils.getValue(this.style, mxConstants.STYLE_GRADIENT_DIRECTION, this.gradientDirection);
 		this.opacity = mxUtils.getValue(this.style, mxConstants.STYLE_OPACITY, this.opacity);
 		this.fillOpacity = mxUtils.getValue(this.style, mxConstants.STYLE_FILL_OPACITY, this.fillOpacity);
-		this.fillStyle = mxUtils.getValue(this.style,  mxConstants.STYLE_FILL_STYLE, this.fillStyle);
+		this.fillStyle = mxUtils.getValue(this.style,  mxConstants.STYLE_FILL_STYLE, null);
 		this.strokeOpacity = mxUtils.getValue(this.style, mxConstants.STYLE_STROKE_OPACITY, this.strokeOpacity);
 		this.stroke = mxUtils.getValue(this.style, mxConstants.STYLE_STROKECOLOR, this.stroke);
 		this.strokewidth = mxUtils.getNumber(this.style, mxConstants.STYLE_STROKEWIDTH, this.strokewidth);

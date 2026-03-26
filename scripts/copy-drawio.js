@@ -97,6 +97,13 @@ function copyDir(src, dest) {
   }
 }
 
+if (!fs.existsSync(srcDir)) {
+  const { execSync } = require('child_process');
+  const tmpDir = path.join(__dirname, '..', 'tmp', 'drawio');
+  console.log('drawio source not found. Cloning from GitHub...');
+  execSync(`git clone --depth 1 https://github.com/jgraph/drawio.git ${tmpDir}`, { stdio: 'inherit' });
+}
+
 console.log('Copying drawio core to dist/drawio...');
 if (fs.existsSync(destDir)) {
   fs.rmSync(destDir, { recursive: true, force: true });

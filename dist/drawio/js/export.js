@@ -467,7 +467,7 @@ function render(data)
 
 								if (editable)
 								{
-									svgRoot.setAttribute('content', getFileXml());
+									svgRoot.setAttribute('content', getFileXml(data.uncompressed));
 								}
 
 								electron.sendMessage('svg-data',
@@ -1262,6 +1262,17 @@ function render(data)
 
 	if (preview != null)
 	{
+		// Expands fill patterns to inline geometry for vector PDF output
+		if (Editor.expandPatternsForPrint)
+		{
+			var svgs = document.getElementsByTagName('svg');
+
+			for (var i = 0; i < svgs.length; i++)
+			{
+				Editor.expandSvgPatterns(svgs[i]);
+			}
+		}
+
 		preview.addPendingCss(document);
 		Graph.rewritePageLinks(document, true);
 	}

@@ -573,7 +573,14 @@ mxPopupMenu.prototype.showMenu = function()
 	
 	// Fits the div inside the viewport
 	document.body.appendChild(this.div);
-	mxUtils.fit(this.div);
+	
+	window.setTimeout(mxUtils.bind(this, function()
+	{
+		if (this.div != null)
+		{
+			mxUtils.fit(this.div);
+		}
+	}), 0);
 };
 
 /**

@@ -307,6 +307,20 @@ mxText.prototype.paint = function(c, update)
  */
 mxText.prototype.redraw = function()
 {
+	// Forces full repaint when SVG word wrapping is active and width changes
+	if (this.wrap && this.convertToSvg && this.style != null &&
+		this.style['svgWhiteSpace'] == 'wrap' && this.bounds != null)
+	{
+		var currentWidth = this.bounds.width;
+
+		if (this.lastWrapWidth != null && this.lastWrapWidth != currentWidth)
+		{
+			this.lastValue = null;
+		}
+
+		this.lastWrapWidth = currentWidth;
+	}
+
 	if (this.visible && this.checkBounds() && this.cacheEnabled && this.lastValue == this.value &&
 		(mxUtils.isNode(this.value) || this.dialect == mxConstants.DIALECT_STRICTHTML))
 	{

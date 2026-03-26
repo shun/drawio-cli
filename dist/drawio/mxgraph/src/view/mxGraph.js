@@ -8190,9 +8190,9 @@ mxGraph.prototype.zoomActual = function()
  * Zooms the graph to the given scale with an optional boolean center
  * argument, which is passd to <zoom>.
  */
-mxGraph.prototype.zoomTo = function(scale, center)
+mxGraph.prototype.zoomTo = function(scale, center, noScroll)
 {
-	this.zoom(scale / this.view.scale, center);
+	this.zoom(scale / this.view.scale, center, null, noScroll);
 };
 
 /**
@@ -8264,7 +8264,7 @@ mxGraph.prototype.center = function(horizontal, vertical, cx, cy)
  * argument that keeps the graph scrolled to the center. If the center argument
  * is omitted, then <centerZoom> will be used as its value.
  */
-mxGraph.prototype.zoom = function(factor, center, multiplier)
+mxGraph.prototype.zoom = function(factor, center, multiplier, noScroll)
 {
 	center = (center != null) ? center : this.centerZoom;
 	var scale = Math.round(this.view.scale * factor * 100) / 100;
@@ -8329,7 +8329,7 @@ mxGraph.prototype.zoom = function(factor, center, multiplier)
 			
 			this.view.setScale(scale);
 			
-			if (hasScrollbars)
+			if (hasScrollbars && !noScroll)
 			{
 				var dx = 0;
 				var dy = 0;
@@ -9339,7 +9339,14 @@ mxGraph.prototype.setHtmlLabels = function(value)
  */
 mxGraph.prototype.isWrapping = function(cell)
 {
-	return this.getCurrentCellStyle(cell)[mxConstants.STYLE_WHITE_SPACE] == 'wrap';
+	var style = this.getCurrentCellStyle(cell);
+
+	if (mxUtils.getValue(style, 'convertToSvg', '0') == '1')
+	{
+		return style['svgWhiteSpace'] == 'wrap';
+	}
+
+	return style[mxConstants.STYLE_WHITE_SPACE] == 'wrap';
 };
 
 /**
