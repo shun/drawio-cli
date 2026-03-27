@@ -1,10 +1,9 @@
 {
   "name": "drawio-cli",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "vitest run",
-    "postinstall": "node scripts/copy-drawio.js",
     "build": "tsc && node scripts/copy-drawio.js",
     "update-drawio": "rm -rf tmp/drawio && git clone --depth 1 https://github.com/jgraph/drawio.git tmp/drawio && npm run build"
   },
